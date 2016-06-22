@@ -2,8 +2,7 @@
 import sys
 import re
 
-# file = "/etc/dhcp/dhcpd.conf.reserved"
-file = '/tmp/dhcp.reserved'
+file = '/etc/dhcp/dhcpd.conf.reserved'
 reserve_template = 'host %(name)s {\r\n\
 hardware ethernet %(mac)s;\r\n\
 fixed-address %(ip)s;\r\n\
