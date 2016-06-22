@@ -2,7 +2,7 @@
 import sys
 import re
 
-file = '/etc/dhcp/dhcpd.conf.reserved'
+file = "/etc/dhcp/dhcpd.conf.reserved"
 reserve_template = 'host %(name)s {\r\n\
 hardware ethernet %(mac)s;\r\n\
 fixed-address %(ip)s;\r\n\
@@ -30,8 +30,12 @@ def add_new_reserved_address(ip, mac, name):
 	with open(file, 'a') as file_handler:
 		file_handler.write(reserve_template % {'name': name, 'mac': mac, 'ip': ip})
 
+if len(sys.argv) == 1:
+	print('----- Please, specify arguments:\r\n    name mac ip\r\n----- Example:\r\n     my_comp 01:ff:20:ab:22:33 192.168.1.100\r\n')
+	exit(2)
 if len(sys.argv) != 4:
-	raise Exception('Incorrect arguments count!')
+	print('Incorrect arguments count!')
+	exit(2)
 
 name = sys.argv[1]
 ip = sys.argv[2]
@@ -41,3 +45,4 @@ if is_valid(ip, mac, name):
 	add_new_reserved_address(ip, mac, name)
 else:
 	print('IP address or Name is incorrect!')
+	exit(2)
