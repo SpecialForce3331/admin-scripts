@@ -7,8 +7,6 @@ reserve_template = 'host %(name)s {\r\n\
 hardware ethernet %(mac)s;\r\n\
 fixed-address %(ip)s;\r\n\
 }\r\n'
-name = None
-ip = None
 
 
 def is_valid(ip, mac, name):
