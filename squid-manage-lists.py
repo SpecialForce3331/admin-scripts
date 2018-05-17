@@ -78,9 +78,23 @@ def add_deny_site(url):
         write_to_file(deny_sites_file, url)
 
 
+def remove_deny_site(url):
+    if is_data_exists_in_file(deny_sites_file, url):
+        remove_from_file(deny_sites_file, url)
+    else:
+        print('Site is not exists in file', deny_sites_file)
+
+
 def block_user(user):
     if is_data_exists_in_file(vip_users_file, user):
+        print('User already exists in file', deny_users_file)
+    else:
         write_to_file(deny_users_file, user)
+
+
+def unblock_user(user):
+    if is_data_exists_in_file(deny_users_file, user):
+        remove_from_file(deny_users_file, user)
     else:
         print('User not exists in file', deny_users_file)
 
@@ -91,6 +105,10 @@ actions = {
     'block': {
         'user': block_user,
         'site': add_deny_site
+    },
+    'unblock': {
+        'user': unblock_user,
+        'site': remove_deny_site
     }
 }
 
